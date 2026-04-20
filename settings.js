@@ -1079,7 +1079,7 @@ function applyLanguage(){
 
   // ── Beta banner text ────────────────────────────────────────────────────────
   var bannerTxt = document.querySelector(".beta-banner-text");
-  if(bannerTxt) bannerTxt.innerHTML = t("betaBannerText") + ' <a href="mailto:studio@oriven.com" class="beta-banner-link">studio@oriven.com</a>';
+  if(bannerTxt) bannerTxt.innerHTML = t("betaBannerText") + ' <a href="mailto:studio.oriven@outlook.com" class="beta-banner-link">studio.oriven@outlook.com</a>';
 
   // ── Idea panel — re-render if one is currently open ────────────────────────
   if(typeof idShowPanel === "function" && typeof S !== "undefined" && S._currentIdPanel){
