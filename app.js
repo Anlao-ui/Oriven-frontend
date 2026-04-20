@@ -1159,7 +1159,7 @@ async function generateAILogo(){
   }
 
   try {
-    var res=await fetch("http://localhost:3000/api/generate-logo",{
+    var res=await fetch(API_BASE_URL+"/api/generate-logo",{
       method:"POST",
       headers:{"Content-Type":"application/json"},
       body:JSON.stringify({brandName:brandName,description:description,logoStyle:logoStyle,styleDirection:styleDirection,colorPalette:colorPalette})
@@ -1183,8 +1183,8 @@ async function generateAILogo(){
         +'</div></div>';
     }
   } catch(e){
-    toast("Could not connect to server. Make sure it\u2019s running on port 3000.","warn");
-    if(resultArea) resultArea.innerHTML='<div class="builder-error">Could not connect to server. Make sure it\u2019s running on port 3000.</div>';
+    toast("Could not connect to ORIVEN services. Please try again.","warn");
+    if(resultArea) resultArea.innerHTML='<div class="builder-error">Could not connect to ORIVEN services. Please try again.</div>';
   } finally {
     if(btn){btn.disabled=false;btn.textContent="Generate Logo";}
   }
@@ -1270,7 +1270,7 @@ function runGenBrand(){
   var iv=setInterval(function(){
     if(mi<msgs.length) document.getElementById("glovStatus").textContent=msgs[mi++];
   },900);
-  fetch("http://localhost:3000/api/generate-brandcore",{
+  fetch(API_BASE_URL+"/api/generate-brandcore",{
     method:"POST",
     headers:{"Content-Type":"application/json"},
     body:JSON.stringify(payload)
@@ -1327,7 +1327,7 @@ function runGenBrand(){
     clearInterval(iv);
     glov.classList.remove("open");
     console.error("[BrandCore] Error:",err);
-    toast("Could not connect to the backend. Make sure the server is running on port 3000.","warn");
+    toast("Could not connect to ORIVEN services. Please try again.","warn");
   });
 }
 function saveBCManual(){

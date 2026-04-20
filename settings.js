@@ -1243,7 +1243,7 @@ async function switchPlan(planId){
       return;
     }
 
-    var resp = await fetch("http://localhost:3000/api/schedule-plan-change", {
+    var resp = await fetch(API_BASE_URL+"/api/schedule-plan-change", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -1286,7 +1286,7 @@ async function cancelPlanChange(){
     var sessionResult = await SB.auth.getSession();
     var session = sessionResult.data && sessionResult.data.session;
     if(!session) return;
-    await fetch("http://localhost:3000/api/cancel-plan-change", {
+    await fetch(API_BASE_URL+"/api/cancel-plan-change", {
       method: "POST",
       headers: { "Authorization": "Bearer " + session.access_token }
     });

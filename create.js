@@ -1718,7 +1718,7 @@ async function runBuilder(){
   var endpoint, requestBody;
 
   if(type === "image"){
-    endpoint = "http://localhost:3000/api/generate-image";
+    endpoint = API_BASE_URL+"/api/generate-image";
     var _b   = S._builder || {};
     requestBody = {
       prompt:       prompt,
@@ -1733,7 +1733,7 @@ async function runBuilder(){
       uploadType:   _b.imgUploadType || null
     };
   } else if(type === "ads"){
-    endpoint    = "http://localhost:3000/api/generate-ad";
+    endpoint    = API_BASE_URL+"/api/generate-ad";
     requestBody = {
       prompt:    prompt,
       size:      _builderAdsSize(),
@@ -1741,14 +1741,14 @@ async function runBuilder(){
       adFormat:  (S._builder || {}).adsFormat || "feed"
     };
   } else if(type === "campaign"){
-    endpoint    = "http://localhost:3000/api/generate-campaign";
+    endpoint    = API_BASE_URL+"/api/generate-campaign";
     requestBody = {
       prompt: prompt,
       size:   _builderCampSize(),
       type:   "campaign"
     };
   } else if(type === "text"){
-    endpoint    = "http://localhost:3000/api/generate-text";
+    endpoint    = API_BASE_URL+"/api/generate-text";
     requestBody = { prompt: prompt, type: "text" };
   }
 
@@ -1779,7 +1779,7 @@ async function runBuilder(){
   } catch(e){
     console.error("[Builder/" + type + "] error:", e);
     if(resultBody) resultBody.innerHTML =
-      '<div class="builder-error">Could not connect to the server. Make sure it\u2019s running on port 3000.</div>';
+      '<div class="builder-error">Could not connect to ORIVEN services. Please try again.</div>';
     var msgEl2 = document.getElementById("flowGuideMessage");
     if(msgEl2) msgEl2.textContent = "Something went wrong. Please try again.";
   }
@@ -2192,7 +2192,7 @@ async function sendCWS(){
   else if(cwsType === "assistant") finalPrompt = buildAssistantPrompt(prompt);
   else                             finalPrompt = prompt;
 
-  var endpoint = "http://localhost:3000/api/generate-text";
+  var endpoint = API_BASE_URL+"/api/generate-text";
 
   fetch(endpoint, {
     method:  "POST",
@@ -2226,7 +2226,7 @@ async function sendCWS(){
     ad.className = "chat-msg ai";
     ad.innerHTML =
       '<div class="chat-ai-avatar"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M10 2L12.5 7.5H18L13.5 11L15 16.5L10 13.5L5 16.5L6.5 11L2 7.5H7.5Z"/></svg></div>'
-      + '<div class="chat-bubble ai-bubble">Could not connect to the backend. Make sure the server is running on port 3000.</div>';
+      + '<div class="chat-bubble ai-bubble">Could not connect to ORIVEN services. Please try again.</div>';
     feed.appendChild(ad);
     feed.scrollTop = feed.scrollHeight;
   });

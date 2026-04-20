@@ -145,7 +145,7 @@ async function syncSubscriptionFromDB(){
     var sessionResult = await SB.auth.getSession();
     var session = sessionResult.data && sessionResult.data.session;
     if(!session) return;
-    var resp = await fetch("http://localhost:3000/api/get-subscription", {
+    var resp = await fetch(API_BASE_URL+"/api/get-subscription", {
       headers: { "Authorization": "Bearer " + session.access_token }
     });
     if(!resp.ok){ console.warn("[Subscription] GET /api/get-subscription failed:", resp.status); return; }
@@ -565,7 +565,7 @@ async function selectPlan(plan){
 
   try {
     var u = S.user || (await SB.auth.getUser()).data.user;
-    var resp = await fetch("http://localhost:3000/api/create-checkout-session", {
+    var resp = await fetch(API_BASE_URL+"/api/create-checkout-session", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ plan, userId: u.id, userEmail: u.email })

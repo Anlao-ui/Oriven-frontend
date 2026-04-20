@@ -190,7 +190,7 @@ function _runBrandCheckRequest(payload, isManual){
   if(ckActions) ckActions.classList.add("hidden");
   if(ckLoad) ckLoad.classList.remove("hidden");
   if(ckScore) ckScore.classList.add("hidden");
-  fetch("http://localhost:3000/api/brand-check",{
+  fetch(API_BASE_URL+"/api/brand-check",{
     method:"POST",
     headers:{"Content-Type":"application/json"},
     body:JSON.stringify(payload)
@@ -210,7 +210,7 @@ function _runBrandCheckRequest(payload, isManual){
   .catch(function(err){
     if(ckLoad) ckLoad.classList.add("hidden");
     console.error("[BrandCheck] Error:",err);
-    toast("Could not connect to the backend. Make sure the server is running on port 3000.","warn");
+    toast("Could not connect to ORIVEN services. Please try again.","warn");
     if(!isManual && ckActions) ckActions.classList.remove("hidden");
   });
 }
